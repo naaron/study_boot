@@ -29,7 +29,7 @@ public class UserTaskService {
 	}
 	
 	public UserTask findUserTask(int id){
-		return userTaskRepository.findOne(id);
+		return userTaskRepository.findById(id).get();
 	}
 	
 	public void save(UserTask user_task){
@@ -37,7 +37,7 @@ public class UserTaskService {
 	}
 	
 	public void delete(int id){
-		userTaskRepository.delete(id);
+		userTaskRepository.deleteById(id);
 
 	}
 

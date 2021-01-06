@@ -37,11 +37,11 @@ public class UserService {
     }
 
     public User findUser(int id) {
-        return userRepository.findOne(id);
+        return userRepository.findById(id).get();
     }
 
     public void delete(int id) {
-        userRepository.delete(id);
+        userRepository.deleteById(id);
 
     }
 

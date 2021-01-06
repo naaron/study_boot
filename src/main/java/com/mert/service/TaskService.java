@@ -28,7 +28,7 @@ public class TaskService {
 	}
 	
 	public Task findTask(int id){
-		return taskRepository.findOne(id);
+		return taskRepository.findById(id).get();
 	}
 	
 	public void save(Task task){
@@ -36,7 +36,7 @@ public class TaskService {
 	}
 	
 	public void delete(int id){
-		taskRepository.delete(id);
+		taskRepository.deleteById(id);
 
 	}
 }

@@ -1,16 +1,13 @@
 package com.mert.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Yasin Mert on 25.02.2017.
  */
 import javax.validation.Valid;
 
-import com.mert.model.Role;
-import com.mert.model.Task;
-import com.mert.model.UserTask;
-import com.mert.service.RoleService;
-import com.mert.service.TaskService;
-import com.mert.service.UserTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mert.model.Role;
+import com.mert.model.Task;
 import com.mert.model.User;
+import com.mert.model.UserTask;
+import com.mert.service.RoleService;
+import com.mert.service.TaskService;
 import com.mert.service.UserService;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.mert.service.UserTaskService;
 
 @Controller
 public class LoginController {
