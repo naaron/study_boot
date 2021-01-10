@@ -18,6 +18,10 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="/css/AdminLTE.min.css">
 
+    <!-- Toast Grid -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+    <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/css/_all-skins.min.css">
@@ -69,7 +73,7 @@
                                     <small><span class="hidden-xs" th:utext="${auth.email}"></span></small>
                                 </p>
                             </li>
-                            <!-- Menu Body --
+                            <!-- Menu Body -->
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
@@ -197,6 +201,9 @@
 
         <!-- Main content -->
         <section class="content">
+            <div id="grid"></div>
+
+
             <div th:if="${mode == 'MODE_ALL'}">
                 <section class="content-header">
                     <h1>
@@ -285,7 +292,7 @@
                                     <label class="col-md-4 control-label">User Type</label>
                                     <div class="col-md-4 text-left">
                                         <select class="selectpicker" data-live-search="true"
-                                              name="role" tabindex="-98">
+                                                name="role" tabindex="-98">
 
                                             <option th:each="role: ${roles}" th:value="${role.id}"
                                                     th:if="${user.role.id} == ${role.id}" selected="selected"  th:text="${role.role}">
@@ -336,6 +343,39 @@
 <script src="/js/dataTables.bootstrap.min.js"></script>
 <script src="/js/bootstrap-select.min.js"></script>
 <script>
+    var grid = new tui.Grid({
+        el: document.getElementById('grid'),
+        data: {
+            api: {
+                readData: { url: '/users/toast/all', method: 'GET' }
+            }
+        },
+        scrollX: false,
+        scrollY: false,
+        columns: [
+            {
+                header: 'ID',
+                name: 'id'
+            },
+            {
+                header: 'Email',
+                name: 'email'
+            },
+            {
+                header: 'Name',
+                name: 'name'
+            },
+            {
+                header: 'Active',
+                name: 'active'
+            },
+            {
+                header: 'Role',
+                name: 'role2'
+            }
+        ]
+    });
+
     $(function () {
         $('#example1').DataTable({
             "ordering": false

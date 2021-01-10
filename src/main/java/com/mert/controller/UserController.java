@@ -5,6 +5,9 @@ package com.mert.controller;
  */
 import javax.validation.Valid;
 
+import com.mert.model.CommonResult;
+import com.mert.model.ListResult;
+import com.mert.service.ResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -14,12 +17,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mert.model.User;
 
 import com.mert.service.RoleService;
 import com.mert.service.UserService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/users")
@@ -31,6 +40,9 @@ public class UserController {
 
 	@Autowired
 	private RoleService roleService;
+
+	@Autowired
+	private ResponseService responseService;
 
 
 
@@ -45,6 +57,13 @@ public class UserController {
 		modelAndView.setViewName("user");
 		return modelAndView;
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/toast/all", method = RequestMethod.GET)
+	public ListResult<User> allUsersApi() {
+		return responseService.getListResult(userService.findAll());
+	}
+
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveUser(@Valid User user, BindingResult bindingResult) {
