@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>App MERT | USERS</title>
+   <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+	<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -320,9 +322,55 @@
                     </div>
                 </div>
             </div>
+                
+    <div id="grid"></div>
     </div>
+
 </div>
 <!-- ./wrapper -->
+
+	
+	<script>
+        // 웹서버에서 GRID 데이터를 가져오는 방법을 설정한다.
+		var clsData = {
+			api: {
+				readData: { url: '../api_read.html', method: 'GET' }
+			}
+		};
+		var data2 = [
+		  {
+		    name: 'test1',
+		    email: 'tset@test.com'
+		  },
+		  {
+		    name: 'test18',
+		    email: 'tset@test.com'
+		  },
+		  {
+		    name: 'test19',
+		    email: 'tset@test.com'
+		  }
+		];
+
+        // GRID 를 생성한다.
+		var grid = new tui.Grid( {
+			el: document.getElementById('grid'),
+			columns: [
+				
+				{
+					header: 'Name',
+					name: 'name',
+					editor: 'text'
+				},
+				{
+					header: 'Email',
+					name: 'email',
+					editor: 'text'
+				}
+			],
+			data: data2
+		} );
+	</script>
 
 <!-- jQuery 2.2.3 -->
 <script src="/js/jquery-2.2.3.min.js"></script>
