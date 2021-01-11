@@ -1,6 +1,5 @@
 package com.mert.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,6 +7,7 @@ import java.util.List;
  */
 import javax.validation.Valid;
 
+import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,23 +35,30 @@ public class UserController {
 	private RoleService roleService;
 	
 	//toast ui grid test 
-	@RequestMapping(value = "/all-test")
-	public @ResponseBody ModelAndView gridTest(User search) {  //User model 로 데이터 매칭 바인딩
-		System.out.println("all-test실행");
-		System.out.println(search.getName() + "name 변수가전달됌22");
-		ModelAndView modelAndView = new ModelAndView();
-		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
+//	@RequestMapping(value = "/all-test" , method = RequestMethod.POST)
+//	public @ResponseBody ModelAndView gridTest(User search) {  //User model 로 데이터 매칭 바인딩
+//		System.out.println("all-test실행");
+//		System.out.println(search.getName() + "name 변수가전달됌22");
+//		ModelAndView modelAndView = new ModelAndView();
+//		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
+//
+//		modelAndView.addObject("mode", "MODE_return");
+//		modelAndView.addObject("user_data", search.getName());
+////		modelAndView.addObject("auth", getUser());
+////		modelAndView.addObject("control", getUser().getRole().getRole());
+//		modelAndView.setViewName("user");
+//		
+//		System.out.println(modelAndView.getModel());
+//		return modelAndView;
+//	}
+	@RequestMapping(value = "/all-test", method = RequestMethod.POST)
+	public @ResponseBody List<User> searchGet(User vo) throws Exception {
+		System.out.println(vo.getName() + "name 변수가전달됌22");
 
-		modelAndView.addObject("mode", "MODE_return");
-		modelAndView.addObject("user_data", search.getName());
-		modelAndView.addObject("auth", getUser());
-		modelAndView.addObject("control", getUser().getRole().getRole());
-		modelAndView.setViewName("user");
-		
-		System.out.println(modelAndView.getModel());
-		return modelAndView;
+		return userService.findAll();
 	}
 
+		
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ModelAndView allUsers() {
 		System.out.println("all실행");

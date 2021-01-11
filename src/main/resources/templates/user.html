@@ -407,7 +407,7 @@ function go_search(){
 		type:"POST",
 		data:search,
 	     success:function(data){
-	     	alert(data.mode+" " + "return data");
+	     	alert(JSON.stringify(data));
 	     },
 	     error:function(e){
 	     	alert("오류");
