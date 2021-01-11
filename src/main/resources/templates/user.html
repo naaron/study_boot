@@ -315,12 +315,16 @@
                     </div>
                 </div>
             </div>
-                
+            <form id="search-form">
+            <input type ="text" id = "name">
+            <button type= "submit" id="bth-search">Search</button>
+               </form>
     <div id="grid"></div>
     </div>
 
 </div>
 <!-- ./wrapper -->
+
 
 	
 	<script>
@@ -390,6 +394,37 @@
         });
         $('#table2').DataTable();
     });
+</script>
+<script type= "text/javascript">
+$(document).ready(function(){
+		$("#search-form").submit(function(event){
+		   // alert("ABC3");
+			//event.prevetDefault();
+			go_search();
+		});
+	
+});
+
+function go_search(){
+	var search = {
+			name :'test'
+	};
+	alert(JSON.stringify(search));
+	$.ajax({
+		url:"/users/all-test",
+		type:"POST",
+		data:search,
+	     success:function(data){
+	     	alert(data);
+	     },
+	     error:function(e){
+	     	alert("오류");
+	     }
+	});
+
+	alert("ABC1111");
+}
+
 </script>
 </body>
 </html>

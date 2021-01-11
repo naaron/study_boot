@@ -6,18 +6,17 @@ package com.mert.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mert.model.User;
-
 import com.mert.service.RoleService;
 import com.mert.service.UserService;
 
@@ -31,11 +30,26 @@ public class UserController {
 
 	@Autowired
 	private RoleService roleService;
-
+	
+	//toast ui grid test 
+	@RequestMapping(value = "/all-test")
+	public ModelAndView gridTest(User search) {  //User model 로 데이터 매칭 바인딩
+		System.out.println("all-test실행");
+		System.out.println(search.getName() + "name 변수가전달됌");
+		ModelAndView modelAndView = new ModelAndView();
+		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
+		modelAndView.addObject("users", userService.findAll());
+		modelAndView.addObject("mode", "MODE_ALL");
+		modelAndView.addObject("auth", getUser());
+		modelAndView.addObject("control", getUser().getRole().getRole());
+		modelAndView.setViewName("user");
+		return modelAndView;
+	}
 
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ModelAndView allUsers() {
+		System.out.println("all실행");
 		ModelAndView modelAndView = new ModelAndView();
 		//POINT=7 http://stackoverflow.com/questions/22364886/neither-bindingresult-nor-plain-target-object-for-bean-available-as-request-attr
 		modelAndView.addObject("users", userService.findAll());
