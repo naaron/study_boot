@@ -1,5 +1,7 @@
 package com.mert.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -51,10 +53,22 @@ public class UserController {
 //		System.out.println(modelAndView.getModel());
 //		return modelAndView;
 //	}
-	@RequestMapping(value = "/all-test", method = RequestMethod.POST)
+	@RequestMapping(value = "/all-test", method = RequestMethod.GET)
 	public @ResponseBody List<User> searchGet(User vo) throws Exception {
-		System.out.println(vo.getName() + "name 변수가전달됌22");
-
+		System.out.println(vo.getName() + "name 변수가전달22");
+		
+//		HashMap  User2 = new HashMap();
+//		List go  = new ArrayList();
+//		User2.put("id", "bbb");
+//		User2.put("email", "test");
+//		go.add(User2);
+//	    User2 = new HashMap();
+//		User2.put("id", "bbb2");
+//		User2.put("email", "tes2t");
+//		
+//		
+//		go.add(User2);
+//		
 		return userService.findAll();
 	}
 

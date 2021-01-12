@@ -326,49 +326,6 @@
 <!-- ./wrapper -->
 
 
-	
-	<script>
-        // 웹서버에서 GRID 데이터를 가져오는 방법을 설정한다.
-		var clsData = {
-			api: {
-				readData: { url: '../api_read.html', method: 'GET' }
-			}
-		};
-		var data2 = [
-		  {
-		    name: 'test1',
-		    email: 'tset@test.com'
-		  },
-		  {
-		    name: 'test18',
-		    email: 'tset@test.com'
-		  },
-		  {
-		    name: 'test19',
-		    email: 'tset@test.com'
-		  }
-		];
-
-        // GRID 를 생성한다.
-		var grid = new tui.Grid( {
-			el: document.getElementById('grid'),
-			columns: [
-				
-				{
-					header: 'Name',
-					name: 'name',
-					editor: 'text'
-				},
-				{
-					header: 'Email',
-					name: 'email',
-					editor: 'text'
-				}
-			],
-			data: data2
-		} );
-	</script>
-
 <!-- jQuery 2.2.3 -->
 <script src="/js/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -387,6 +344,28 @@
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/dataTables.bootstrap.min.js"></script>
 <script src="/js/bootstrap-select.min.js"></script>
+<script>
+    // GRID 를 생성한다.
+	var grid = new tui.Grid( {
+		el: document.getElementById('grid'),
+		columns: [
+			
+			{
+				header: 'Name',
+				name: 'id',
+				editor: 'text'
+			},
+			{
+				header: 'Email',
+				name: 'email',
+				editor: 'text'
+			}
+		]
+		//data: clsData
+		
+	} );
+ 
+	</script> 
 <script type= "text/javascript">
 $(document).ready(function(){
 		$("#search-form").submit(function(event){
@@ -404,17 +383,17 @@ function go_search(){
 	alert("실행");
 	$.ajax({
 		url:"/users/all-test",
-		type:"POST",
+		type:"GET",
 		data:search,
 	     success:function(data){
-	     	alert(JSON.stringify(data));
+	     	grid.resetData(data);  //상단에 grid 라는 변수를 설정해줘서 가능
 	     },
 	     error:function(e){
 	     	alert("오류");
 	     }
 	});
 
-	alert("ABC1111");
+	
 }
 
 </script>
@@ -426,6 +405,9 @@ function go_search(){
         $('#table2').DataTable();
     });
 </script>
+	
+
+
 
 </body>
 </html>
