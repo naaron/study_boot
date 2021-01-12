@@ -109,7 +109,7 @@ public class UserController {
 		modelAndView.setViewName("user");
 		return modelAndView;
 	}
-
+ 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteUser(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/users/all");
