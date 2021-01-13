@@ -318,6 +318,7 @@
             <form id="search-form">
             <input type ="text" id = "name">
             <button type= "submit" id="bth-search">Search</button>
+            <button type="button" value  ="add" id="addrow">Add</button>
                </form>
     <div id="grid"></div>
     </div>
@@ -346,24 +347,47 @@
 <script src="/js/bootstrap-select.min.js"></script>
 <script>
     // GRID 를 생성한다.
+	var clsData = {
+			api: {
+				readData : {url:'',method:'GET'},
+				updateData : { url:'/users/all-test-update',method: 'POST'}
+			},
+		    contentType: "application/json",
+			headers: { 'x-custom-header': 'custom-header' }
+
+	}
 	var grid = new tui.Grid( {
 		el: document.getElementById('grid'),
+		// headers: { 'x-custom-header': 'custom-header' },
+		focus: true,
 		columns: [
 			
 			{
 				header: 'Name',
-				name: 'id',
+				name: 'name',
 				editor: 'text'
 			},
 			{
 				header: 'Email',
 				name: 'email',
 				editor: 'text'
+			},
+			{
+				header: 'active',
+				name: 'active',
+				editor: 'text'
 			}
-		] 
-		//data: clsData
+		], 
+		result: true,
+		data:{
+			contents:[]
+		},
+
+
+		data: clsData
 		
 	} );
+  //  grid.appendRow();그리드 행 추가 
  
 	</script> 
 <script type= "text/javascript">
@@ -372,8 +396,20 @@ $(document).ready(function(){
 		   // alert("ABC3");
 			event.preventDefault();
 			go_search();
+			
 		});
 	
+});
+
+$(function(){
+	
+	$("#addrow").click(function(){
+		grid.appendRow();
+		alert(grid.getValue(1,'name'));
+		//grid.setRequestParams("ABCC");
+		grid.request('updateData');
+		//alert(grid.request('updateData'));
+	})
 });
 
 function go_search(){

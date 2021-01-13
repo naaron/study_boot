@@ -1,7 +1,5 @@
 package com.mert.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -9,12 +7,16 @@ import java.util.List;
  */
 import javax.validation.Valid;
 
-import org.hibernate.mapping.Map;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,6 +73,16 @@ public class UserController {
 //		
 		return userService.findAll();
 	}
+	
+	@PostMapping(value = "/all-test-update")
+	public   @ResponseBody String UpdateRow(@RequestBody String VO) throws Exception {
+
+		System.out.println(VO+ "update 데이터 처리 ");
+		//json object 담는거 구현 해야함
+	
+		return "ABC";
+	}
+
 
 		
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
