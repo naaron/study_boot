@@ -2,6 +2,7 @@ package com.mert.controller;
 
 import java.util.List;
 
+
 /**
  * Created by Yasin Mert on 25.02.2017.
  */
@@ -70,6 +71,7 @@ public class UserController {
 //		
 //		
 //		go.add(User2);
+		System.out.println(userService.findAll());
 //		
 		return userService.findAll();
 	}
@@ -79,7 +81,17 @@ public class UserController {
 
 		System.out.println(VO+ "update 데이터 처리 ");
 		//json object 담는거 구현 해야함
-	
+		JSONParser jsonParse = new JSONParser(); //JSONParse에 json데이터를 넣어 파싱한 다음 JSONObject로 변환한다. 
+		JSONObject jsonObj = (JSONObject) jsonParse.parse(VO);
+		
+		JSONArray personArray = (JSONArray) jsonObj.get("updatedRows");
+		
+		for(int i=0; i < personArray.size(); i++) {
+			JSONObject personObject = (JSONObject) personArray.get(i);
+
+			System.out.println(personObject.get("email") + "데이터가 들어옴");
+		}
+
 		return "ABC";
 	}
 

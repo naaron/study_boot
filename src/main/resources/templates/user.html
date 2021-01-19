@@ -414,11 +414,11 @@ $(function(){
 
 function go_search(){
 	var search = {
-			name :'test'
+			countrycode :'CN'
 	};
 	alert("실행");
 	$.ajax({
-		url:"/users/all-test",
+		url:"/api/schedulecommon/common",
 		type:"GET",
 		data:search,
 	     success:function(data){
