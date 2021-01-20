@@ -16,4 +16,5 @@ This project contains following tech stack;
            * MySQL (5.7.11)
            * Admin LTE template
            * Bootstrap (UI Presentation)
+           * TOAST UI 
  
