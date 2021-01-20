@@ -43,6 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.authoritiesByUsernameQuery(rolesQuery)
 				.dataSource(dataSource)
 				.passwordEncoder(bCryptPasswordEncoder);
+		System.out.println("실행1");
 	}
 
 	@Override
@@ -53,6 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/index").permitAll()
 				.antMatchers("/login").permitAll()
+				.antMatchers("/api/**").permitAll()
 				.antMatchers("/registration").permitAll()
 				.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
 				//.antMatchers("/user/**").hasAuthority("USER").anyRequest()

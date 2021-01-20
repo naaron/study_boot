@@ -18,7 +18,6 @@ public class JdbcScheduleComRepository implements ScheduleComRepository{
 	
 	  @Override
 	  public List<CommonCode> findBySchedule(CommonCode commoncode) {
-	    // TODO 이름 프로퍼티 처리
 	    return jdbcTemplate.query("select * from common_code where country_code = ?",
 	      new Object[]{commoncode.getCountryCode()},
 	      (rs, rowNum) -> new CommonCode(
