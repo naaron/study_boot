@@ -13,7 +13,7 @@ import com.mert.service.schedule.ScheduleComService;
 
 
 @RestController
-@RequestMapping("/api/schcom")
+@RequestMapping("/api/schedule")
 public class ComCodeController {
 	private static Logger logger = Logger.getLogger(ComCodeController.class);
 	

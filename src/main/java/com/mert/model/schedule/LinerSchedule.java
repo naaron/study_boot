@@ -11,9 +11,7 @@ public class LinerSchedule {
 	private final String eta;
 	private final String remark;
 	
-	public LinerSchedule(String linercode,String vesselname,String pol, String pod, String etd, String eta) {
-		this(linercode,vesselname,pol,pod,etd,eta,null);
-	}
+
 	
 	public LinerSchedule(String linercode,String vesselname,String pol, String pod, String etd, String eta, String remark) {
 		this.linercode = linercode;
@@ -41,6 +39,9 @@ public class LinerSchedule {
 	}
 	public String getEta() {
 		return eta;
+	}
+	public String getRemark() {
+		return remark;
 	}
 	
 	//builder 패턴 적용

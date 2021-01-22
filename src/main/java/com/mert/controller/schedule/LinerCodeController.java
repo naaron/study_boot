@@ -11,7 +11,7 @@ import com.mert.model.schedule.common.LinerCode;
 import com.mert.service.schedule.ScheduleLinerService;
 
 @RestController
-@RequestMapping("/api/schliner")
+@RequestMapping("/api/schedule")
 public class LinerCodeController {
 	
 	private ScheduleLinerService scheduleLinerService;
