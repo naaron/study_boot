@@ -10,3 +10,4 @@ import com.mert.model.schedule.common.LinerCode;
 public interface ScheduleLinerRepository { 
 	List<LinerCode> findByLinerSchedule(LinerCode linercode);
 }
+ 

@@ -19,7 +19,7 @@ public class ScheduleLinerService {
 	}
 	
 	
-	 
+	  
 	  public List<LinerCode> findSchedule(LinerCode linercode) {
 	        List<LinerCode> scheduleLiner = new ArrayList<>();
 	        scheduleLiner = jdbcscheduleLinerRepository.findByLinerSchedule(linercode);

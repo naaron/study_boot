@@ -17,7 +17,7 @@ public class LinerCodeController {
 	private ScheduleLinerService scheduleLinerService;
 	public LinerCodeController(ScheduleLinerService scheduleLinerService) {
 		this.scheduleLinerService = scheduleLinerService;
-	} 
+	}  
 
 	@RequestMapping(value = "/liner", method = RequestMethod.GET)
 	@ResponseBody

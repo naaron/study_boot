@@ -14,7 +14,7 @@ public class JdbcScheduleLinerRepository implements ScheduleLinerRepository{
 	  public JdbcScheduleLinerRepository(JdbcTemplate jdbcTemplate) {
 	    this.jdbcTemplate = jdbcTemplate;
 	  }
-	 
+	  
 	  @Override
 	  public List<LinerCode> findByLinerSchedule(LinerCode linercode) {
 	    return jdbcTemplate.query("select * from liner_code where liner_code = ?",
