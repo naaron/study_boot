@@ -11,7 +11,7 @@ public class LinerSchedule {
 	private final String eta;
 	private final String remark;
 	
-
+ 
 	
 	public LinerSchedule(String linercode,String vesselname,String pol, String pod, String etd, String eta, String remark) {
 		this.linercode = linercode;
