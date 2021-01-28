@@ -19,7 +19,7 @@ public class JdbcScheduleRepository implements ScheduleRepository{
 	  @Override
 	  public List<LinerSchedule> findBySchedule(LinerSchedule linerSchedule) {
 	    return jdbcTemplate.query("select * from liner_schedule where pol = ? and pod = ?",
-	      new Object[]{linerSchedule.getPol(),linerSchedule.getPod()},
+	    		  new Object[]{"KRPUS","HKHKG"},  //  new Object[]{linerSchedule.getPol(),linerSchedule.getPod()},
 	      (rs, rowNum) -> new LinerSchedule(
 	    		  rs.getString("liner_code"),
 	    		  rs.getString("vessel_name"),

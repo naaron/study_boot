@@ -30,6 +30,20 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+       <!-- 달력  -->
+   <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.css" />
+
+   <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
+<script src="https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js"></script>
+
+<script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>
+
+<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script>
+
+<script src="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js"></script>
+    
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -321,11 +335,37 @@
             <button type="button" value  ="add" id="addrow">Add</button>
                </form>
     <div id="grid"></div>
+    
+    
+       <div id="menu">
+      <span id="menu-navi">
+        <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
+        <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
+          <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+        </button>
+        <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next">
+          <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+        </button>
+      </span>
+      <span id="renderRange" class="render-range"></span>
     </div>
+    <div id="calendar" style="height: 800px;"></div>
+    </div>
+    </div>
+    
+    
+    
+      
+    
 
 </div>
 <!-- ./wrapper -->
-
+<script>
+  var calendar = new tui.Calendar('#calendar', {
+    defaultView: 'month' // monthly view option
+  });
+  
+</script>
 
 <!-- jQuery 2.2.3 -->
 <script src="/js/jquery-2.2.3.min.js"></script>
@@ -417,12 +457,27 @@ function go_search(){
 			countrycode :'CN'
 	};
 	alert("실행");
-	$.ajax({
+/* 	$.ajax({
 		url:"/api/schedulecommon/common",
 		type:"GET",
 		data:search,
 	     success:function(data){
 	     	grid.resetData(data);  //상단에 grid 라는 변수를 설정해줘서 가능
+	     },
+	     error:function(e){
+	     	alert("오류");
+	     }
+	});
+	
+ */	
+ 
+	$.ajax({
+		url:"/api/schedule/calendar",
+		type:"GET",
+		data:search,
+	     success:function(data){
+	    	 	  calendar.clear();
+     	          calendar.createSchedules(data);
 	     },
 	     error:function(e){
 	     	alert("오류");
